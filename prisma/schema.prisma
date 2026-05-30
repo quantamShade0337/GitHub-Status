@@ -1,0 +1,39 @@
+// GitPersona data model.
+// Local dev uses SQLite (zero external services). For production, switch the
+// datasource `provider` to "postgresql" and point DATABASE_URL at your Postgres
+// instance (e.g. Neon/Supabase) — no other code changes are required because the
+// full scan payload is stored as a JSON string, which is portable across both.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// A stored scan summary for a GitHub user. We keep one row per username
+/// (the latest scan) and upsert on re-scan. Denormalized columns power fast
+/// leaderboard/listing queries; `payload` holds the full ScanResult as JSON.
+model Scan {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  displayName  String?
+  avatarUrl    String?
+  archetypeKey String
+  archetype    String
+  tagline      String?
+  outputScore  Int
+  topLanguage  String?
+  totalRepos   Int
+  estimatedLoc Int
+  tokenUsed    Boolean  @default(false)
+  payload      String // full ScanResult JSON
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([archetypeKey])
+  @@index([outputScore])
+  @@index([updatedAt])
+}
