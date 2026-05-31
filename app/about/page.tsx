@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ARCHETYPES } from "@/lib/analysis/archetypes";
 import { SearchBar } from "@/components/SearchBar";
+import { ArchetypeIcon } from "@/components/ArchetypeIcon";
 
 export const metadata: Metadata = {
   title: "Methodology",
@@ -107,7 +108,8 @@ export default function AboutPage() {
         <div className="mt-4 flex flex-wrap gap-2">
           {Object.values(ARCHETYPES).map((a) => (
             <span key={a.key} className="flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-xs">
-              {a.emoji} {a.name}
+              <ArchetypeIcon archetype={a} className="h-3.5 w-3.5" />
+              {a.name}
             </span>
           ))}
         </div>

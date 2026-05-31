@@ -43,9 +43,8 @@ export default async function ComparePage({ searchParams }: PageProps<"/compare"
   }
 
   return (
-    <div className="relative">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-60 accent-glow opacity-50" aria-hidden />
-      <div className="relative mx-auto max-w-4xl px-5 py-12">
+    <div>
+      <div className="mx-auto max-w-4xl px-5 py-12">
         <div className="text-center">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Compare developers</h1>
           <p className="mx-auto mt-3 max-w-lg text-muted">

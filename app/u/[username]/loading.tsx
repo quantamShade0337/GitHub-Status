@@ -8,9 +8,8 @@ const LOADING_MESSAGES = [
 
 export default function Loading() {
   return (
-    <div className="relative">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 accent-glow opacity-60" aria-hidden />
-      <div className="relative mx-auto max-w-5xl space-y-8 px-5 py-10">
+    <div>
+      <div className="mx-auto max-w-5xl space-y-8 px-5 py-10">
         {/* header */}
         <div className="flex items-center gap-5">
           <div className="skeleton h-20 w-20 rounded-2xl sm:h-24 sm:w-24" />

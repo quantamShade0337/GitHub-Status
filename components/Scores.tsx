@@ -53,7 +53,7 @@ function ScoreBar({
       <div className="mt-2.5 h-2 overflow-hidden rounded-full bg-surface-2">
         <motion.div
           className="h-full rounded-full"
-          style={{ background: color, boxShadow: `0 0 10px ${color}66` }}
+          style={{ background: color }}
           initial={{ width: 0 }}
           animate={inView ? { width: `${value}%` } : { width: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay }}

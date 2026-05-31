@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s · GitPersona",
   },
   description:
-    "Turn any public GitHub profile into a beautiful, shareable developer character sheet — stats, languages, code footprint, scores, and a developer archetype.",
+    "Turn any public GitHub profile into a shareable developer character sheet: stats, languages, code footprint, scores, and a developer archetype.",
   openGraph: {
     title: "GitPersona",
     description: "Turn your GitHub into a developer character sheet.",
@@ -24,12 +24,12 @@ export const metadata: Metadata = {
 
 function Logo() {
   return (
-    <Link href="/" className="group flex items-center gap-2.5">
-      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent/15 ring-1 ring-accent/30 transition group-hover:bg-accent/25">
-        <span className="text-[13px]">⚗️</span>
+    <Link href="/" className="group inline-flex items-center gap-2.5">
+      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-background transition group-hover:bg-accent-strong">
+        <span className="mono text-[15px] font-bold leading-none">g</span>
       </span>
       <span className="text-[15px] font-semibold tracking-tight">
-        Git<span className="text-accent">Persona</span>
+        Git<span className="text-muted">Persona</span>
       </span>
     </Link>
   );
@@ -37,19 +37,19 @@ function Logo() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-background/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-line bg-background">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
         <Logo />
         <nav className="flex items-center gap-1 text-sm text-muted">
           <Link
             href="/compare"
-            className="rounded-md px-3 py-1.5 transition hover:bg-surface-2 hover:text-foreground"
+            className="rounded-md px-3 py-1.5 transition-colors hover:bg-surface-2 hover:text-foreground"
           >
             Compare
           </Link>
           <Link
             href="/about"
-            className="rounded-md px-3 py-1.5 transition hover:bg-surface-2 hover:text-foreground"
+            className="rounded-md px-3 py-1.5 transition-colors hover:bg-surface-2 hover:text-foreground"
           >
             Methodology
           </Link>
@@ -60,17 +60,18 @@ function Header() {
 }
 
 function Footer() {
+  const year = new Date().getFullYear();
   return (
     <footer className="mt-24 border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-8 text-sm text-muted-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="mono text-xs">
-          GitPersona · built on public GitHub data · not affiliated with GitHub
+          © {year} GitPersona · built on public GitHub data · not affiliated with GitHub
         </p>
         <div className="flex items-center gap-4">
-          <Link href="/about" className="transition hover:text-foreground">
+          <Link href="/about" className="transition-colors hover:text-foreground">
             How stats are calculated
           </Link>
-          <Link href="/compare" className="transition hover:text-foreground">
+          <Link href="/compare" className="transition-colors hover:text-foreground">
             Compare
           </Link>
         </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Trophy } from "lucide-react";
 import type { ScanResult, ScoreKey } from "@/lib/analysis/types";
 import { formatCompact, formatNumber } from "@/lib/utils";
+import { ArchetypeIcon } from "./ArchetypeIcon";
 
 const A_COLOR = "#a855f7";
 const B_COLOR = "#22d3ee";
@@ -37,7 +38,8 @@ function ProfileMini({ scan, color }: { scan: ScanResult; color: string }) {
         className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-xs"
         style={{ color }}
       >
-        {scan.archetype.emoji} {scan.archetype.name}
+        <ArchetypeIcon archetype={scan.archetype} className="h-3.5 w-3.5" />
+        {scan.archetype.name}
       </span>
     </Link>
   );

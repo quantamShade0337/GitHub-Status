@@ -58,7 +58,6 @@ export function ScoreRing({
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          style={{ filter: `drop-shadow(0 0 8px ${color}55)` }}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">

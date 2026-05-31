@@ -69,10 +69,8 @@ export default async function ProfilePage({ params }: PageProps<"/u/[username]">
   const topLang = languages[0];
 
   return (
-    <div className="relative">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 accent-glow opacity-60" aria-hidden />
-
-      <div className="relative mx-auto max-w-5xl space-y-8 px-5 py-10">
+    <div>
+      <div className="mx-auto max-w-5xl space-y-8 px-5 py-10">
         {/* Profile header */}
         <ProfileHeader scan={scan} />
 
@@ -252,19 +250,14 @@ export default async function ProfilePage({ params }: PageProps<"/u/[username]">
         </section>
 
         {/* Personality summary + next move */}
-        <Card className="relative overflow-hidden p-6 sm:p-8">
-          <div className="pointer-events-none absolute inset-0 grid-bg opacity-30" aria-hidden />
-          <div className="relative">
-            <h3 className="text-xs uppercase tracking-wide text-muted-2">Developer personality</h3>
-            <p className="mt-3 text-pretty text-lg leading-relaxed">{personality.summary}</p>
-            <div className="mt-5 flex items-start gap-3 rounded-xl border border-accent/25 bg-accent/5 p-4">
-              <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-accent">
-                  Suggested next move
-                </p>
-                <p className="mt-1 text-sm text-muted">{personality.nextMove}</p>
-              </div>
+        <Card className="p-6 sm:p-8">
+          <p className="eyebrow">Developer personality</p>
+          <p className="mt-3 text-pretty text-lg leading-relaxed">{personality.summary}</p>
+          <div className="mt-5 flex items-start gap-3 rounded-xl border border-line bg-surface-2 p-4">
+            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            <div>
+              <p className="eyebrow text-accent">Suggested next move</p>
+              <p className="mt-1.5 text-sm text-muted">{personality.nextMove}</p>
             </div>
           </div>
         </Card>

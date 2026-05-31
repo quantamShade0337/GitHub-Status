@@ -47,18 +47,15 @@ export async function GET(req: Request, ctx: RouteContext<"/api/card/[username]"
           position: "relative",
         }}
       >
-        {/* accent glow */}
+        {/* accent rule keyed to the archetype color */}
         <div
           style={{
             position: "absolute",
-            top: "-120px",
-            right: "-80px",
-            width: "460px",
-            height: "460px",
-            borderRadius: "9999px",
+            top: 0,
+            left: 0,
+            width: "1200px",
+            height: "8px",
             background: accent,
-            opacity: 0.22,
-            filter: "blur(80px)",
             display: "flex",
           }}
         />
@@ -95,11 +92,13 @@ export async function GET(req: Request, ctx: RouteContext<"/api/card/[username]"
               height: "84px",
               borderRadius: "20px",
               fontSize: "44px",
+              fontWeight: 700,
+              color: accent,
               background: `${accent}1f`,
               border: `1px solid ${accent}55`,
             }}
           >
-            {archetype.emoji}
+            {archetype.name.charAt(0)}
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: "52px", fontWeight: 700, lineHeight: 1.05 }}>

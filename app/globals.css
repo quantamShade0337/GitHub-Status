@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
 /* ── Design tokens ──────────────────────────────────────────────────────────
-   Dark-first, GitHub-inspired but not a clone. Soft cards, monospace accents,
-   a single restrained violet accent, subtle grid background. */
+   Dark, editorial, terminal-adjacent. Neutrals are tinted toward the violet
+   accent so nothing is a dead grey. One restrained accent, solid fills only —
+   no decorative gradients, no glows, no glass. Hierarchy comes from type,
+   weight, and hairline borders. */
 
 :root {
-  --background: #08080b;
-  --surface: #101014;
-  --surface-2: #16161c;
-  --surface-hover: #1c1c24;
-  --foreground: #ededf2;
-  --muted: #9a9aa6;
-  --muted-2: #6b6b78;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.14);
-  --accent: #a855f7;
-  --accent-2: #22d3ee;
-  --positive: #34d399;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --radius: 16px;
+  --background: oklch(0.165 0.006 292);
+  --surface: oklch(0.205 0.007 292);
+  --surface-2: oklch(0.245 0.008 292);
+  --surface-hover: oklch(0.285 0.009 292);
+  --foreground: oklch(0.955 0.004 292);
+  --muted: oklch(0.74 0.011 292);
+  --muted-2: oklch(0.57 0.013 292);
+  --line: oklch(1 0 0 / 0.08);
+  --line-strong: oklch(1 0 0 / 0.15);
+
+  --accent: oklch(0.66 0.19 295);
+  --accent-strong: oklch(0.6 0.2 295);
+  --accent-soft: oklch(0.66 0.19 295 / 0.12);
+  --accent-2: oklch(0.78 0.12 215);
+  --positive: oklch(0.78 0.15 162);
+  --warning: oklch(0.83 0.13 82);
+  --danger: oklch(0.68 0.18 25);
+
+  --radius: 14px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
@@ -33,6 +40,7 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --color-accent-2: var(--accent-2);
   --color-positive: var(--positive);
   --color-warning: var(--warning);
@@ -58,26 +66,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  letter-spacing: -0.011em;
 }
 
-/* Subtle dotted grid backdrop, fading toward the bottom. */
-.grid-bg {
-  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 28px 28px;
-  -webkit-mask-image: linear-gradient(to bottom, black, transparent 90%);
-  mask-image: linear-gradient(to bottom, black, transparent 90%);
+::selection {
+  background: var(--accent-soft);
+  color: var(--foreground);
 }
 
-/* Ambient accent glow used behind hero / archetype cards. */
-.accent-glow {
-  background: radial-gradient(
-    600px circle at 50% 0%,
-    color-mix(in oklab, var(--accent) 22%, transparent),
-    transparent 70%
-  );
-}
-
-/* Card surface. */
+/* Card surface — a flat panel with a hairline border. No shadow, no glow. */
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -86,9 +83,8 @@ body {
 
 .card-hover {
   transition:
-    border-color 160ms ease,
-    background 160ms ease,
-    transform 160ms ease;
+    border-color 180ms var(--ease-out),
+    background 180ms var(--ease-out);
 }
 .card-hover:hover {
   background: var(--surface-2);
@@ -98,6 +94,16 @@ body {
 .mono {
   font-family: var(--font-mono);
   font-feature-settings: "tnum" 1;
+}
+
+/* Section eyebrow — small mono label that anchors a block of content. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-2);
 }
 
 /* Thin scrollbars in dark surfaces. */
@@ -110,25 +116,20 @@ body {
   border-radius: 999px;
 }
 
-/* Shimmer for loading skeletons. */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
+/* Loading skeletons — a quiet opacity pulse, no shimmer gradient. */
+@keyframes skeleton-pulse {
+  0%,
   100% {
-    background-position: 200% 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
   }
 }
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--surface) 25%,
-    var(--surface-2) 37%,
-    var(--surface) 63%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.4s ease-in-out infinite;
+  background: var(--surface-2);
   border-radius: 10px;
+  animation: skeleton-pulse 1.6s var(--ease-out) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

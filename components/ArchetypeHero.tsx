@@ -1,31 +1,26 @@
 import type { ScanResult } from "@/lib/analysis/types";
 import { ScoreRing } from "./ScoreRing";
+import { ArchetypeIcon } from "./ArchetypeIcon";
 
 export function ArchetypeHero({ scan }: { scan: ScanResult }) {
   const { archetype, scores } = scan;
 
   return (
-    <div
-      className="card relative overflow-hidden p-6 sm:p-8"
-      style={{ boxShadow: `inset 0 0 0 1px ${archetype.color}22` }}
-    >
-      {/* accent wash */}
-      <div
-        className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full opacity-30 blur-3xl"
-        style={{ background: archetype.color }}
-        aria-hidden
-      />
-      <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+    <div className="card overflow-hidden">
+      {/* Accent rule keyed to the archetype color, replacing the old blur glow. */}
+      <div className="h-1 w-full" style={{ background: archetype.color }} aria-hidden />
+      <div className="flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div className="min-w-0">
-          <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-2">
-            Developer archetype
-          </div>
-          <div className="mt-2 flex items-center gap-3">
+          <p className="eyebrow">Developer archetype</p>
+          <div className="mt-3 flex items-center gap-3">
             <span
-              className="flex h-12 w-12 items-center justify-center rounded-xl text-2xl"
-              style={{ background: `${archetype.color}1f`, boxShadow: `inset 0 0 0 1px ${archetype.color}40` }}
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+              style={{
+                background: `color-mix(in oklab, ${archetype.color} 16%, transparent)`,
+                color: archetype.color,
+              }}
             >
-              {archetype.emoji}
+              <ArchetypeIcon archetype={archetype} className="h-6 w-6" />
             </span>
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{archetype.name}</h2>
           </div>

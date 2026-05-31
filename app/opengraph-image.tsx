@@ -24,20 +24,31 @@ export default function OgImage() {
         <div
           style={{
             position: "absolute",
-            top: "-140px",
-            left: "50%",
-            width: "700px",
-            height: "500px",
-            transform: "translateX(-50%)",
-            borderRadius: "9999px",
+            top: 0,
+            left: 0,
+            width: "1200px",
+            height: "6px",
             background: "#a855f7",
-            opacity: 0.18,
-            filter: "blur(100px)",
             display: "flex",
           }}
         />
         <div style={{ display: "flex", alignItems: "center", gap: "16px", fontSize: "28px", color: "#9a9aa6" }}>
-          <span style={{ fontSize: "40px" }}>⚗️</span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "44px",
+              height: "44px",
+              borderRadius: "10px",
+              background: "#a855f7",
+              color: "#08080b",
+              fontSize: "30px",
+              fontWeight: 700,
+            }}
+          >
+            g
+          </div>
           GitPersona
         </div>
         <div style={{ display: "flex", fontSize: "76px", fontWeight: 700, lineHeight: 1.05, marginTop: "28px", maxWidth: "900px" }}>

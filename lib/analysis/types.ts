@@ -90,7 +90,8 @@ export type ScoreKey = keyof Scores;
 export interface Archetype {
   key: string;
   name: string;
-  emoji: string;
+  /** Name of the lucide-react icon used to represent this archetype. */
+  icon: string;
   tagline: string;
   description: string;
   color: string; // accent hex
