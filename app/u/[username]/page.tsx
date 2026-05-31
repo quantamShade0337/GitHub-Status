@@ -22,7 +22,12 @@ import { ArchetypeHero } from "@/components/ArchetypeHero";
 import { StatCard } from "@/components/StatCard";
 import { Card, SectionHeading, ConfidenceBadge } from "@/components/primitives";
 import { ScoreGrid } from "@/components/Scores";
-import { LanguageDonut, ActivityTimeline } from "@/components/charts";
+import {
+  LanguageDonut,
+  ActivityTimeline,
+  TIMELINE_CREATED,
+  TIMELINE_PUSHED,
+} from "@/components/charts";
 import { LanguageStrip } from "@/components/LanguageStrip";
 import { RepoCard } from "@/components/RepoCard";
 import { SkillTree } from "@/components/SkillTree";
@@ -190,10 +195,12 @@ export default async function ProfilePage({ params }: PageProps<"/u/[username]">
           <Card className="p-5">
             <div className="mb-3 flex items-center gap-4 text-xs text-muted-2">
               <span className="flex items-center gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-sm bg-accent" /> created
+                <span className="h-2.5 w-2.5 rounded-sm" style={{ background: TIMELINE_CREATED }} />{" "}
+                created
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-sm bg-accent-2" /> pushed
+                <span className="h-2.5 w-2.5 rounded-sm" style={{ background: TIMELINE_PUSHED }} />{" "}
+                pushed
               </span>
             </div>
             <ActivityTimeline data={scan.timeline} />

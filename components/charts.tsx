@@ -12,6 +12,11 @@ import {
 } from "recharts";
 import type { ActivityPoint, LanguageStat } from "@/lib/analysis/types";
 
+// Data-viz colors. Kept as hex (SVG fill attributes don't resolve CSS vars) and
+// re-exported so the timeline legend matches the bars exactly.
+export const TIMELINE_CREATED = "#a855f7";
+export const TIMELINE_PUSHED = "#22d3ee";
+
 export function LanguageDonut({ languages }: { languages: LanguageStat[] }) {
   const top = languages.slice(0, 7);
   const rest = languages.slice(7).reduce((a, l) => a + l.percent, 0);
@@ -84,16 +89,26 @@ export function ActivityTimeline({ data }: { data: ActivityPoint[] }) {
       </div>
     );
   }
+  // With only a couple of years, a full-width chart strands each year's bars at
+  // opposite edges of a huge category band. Cap the width per year and center it
+  // so the created/pushed pair always sits together under its label.
+  const maxWidth = Math.max(data.length, 2) * 96;
+
   return (
-    <div className="h-[180px] w-full">
+    <div className="mx-auto h-[180px] w-full" style={{ maxWidth }}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} margin={{ top: 8, right: 4, bottom: 0, left: 4 }}>
+        <BarChart
+          data={data}
+          margin={{ top: 8, right: 4, bottom: 0, left: 4 }}
+          barGap={3}
+          barCategoryGap="26%"
+        >
           <XAxis
             dataKey="year"
             tick={{ fill: "var(--muted-2)", fontSize: 11 }}
             axisLine={false}
             tickLine={false}
-            interval="preserveStartEnd"
+            interval={0}
           />
           <Tooltip
             cursor={{ fill: "rgba(255,255,255,0.04)" }}
@@ -110,8 +125,8 @@ export function ActivityTimeline({ data }: { data: ActivityPoint[] }) {
               name === "pushes" ? "repos pushed" : "repos created",
             ]}
           />
-          <Bar dataKey="repos" fill="#a855f7" radius={[3, 3, 0, 0]} maxBarSize={26} />
-          <Bar dataKey="pushes" fill="#22d3ee" radius={[3, 3, 0, 0]} maxBarSize={26} />
+          <Bar dataKey="repos" fill={TIMELINE_CREATED} radius={[4, 4, 0, 0]} maxBarSize={34} />
+          <Bar dataKey="pushes" fill={TIMELINE_PUSHED} radius={[4, 4, 0, 0]} maxBarSize={34} />
         </BarChart>
       </ResponsiveContainer>
     </div>
