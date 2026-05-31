@@ -38,6 +38,21 @@ export function assignArchetype(input: PersonaInput): Archetype {
   const ai = categoryRatio(input, "AI / Data");
   const lowStars = input.avgStars < 2 ? 1 : input.avgStars < 5 ? 0.5 : 0;
 
+  // Language-share signals (0..1) for the language-identity archetypes. These
+  // only score highly when a language or ecosystem clearly dominates a profile,
+  // so mixed profiles still fall through to the broad behavioral archetypes.
+  const lang = (name: string) =>
+    (input.languages.find((l) => l.name === name)?.percent ?? 0) / 100;
+  const ts = lang("TypeScript");
+  const js = lang("JavaScript");
+  const py = lang("Python");
+  const markup = lang("HTML") + lang("CSS") + lang("SCSS");
+  const rust = lang("Rust");
+  const go = lang("Go");
+  const jvm = lang("Java") + lang("Kotlin") + lang("Scala");
+  const mobileLang = lang("Swift") + lang("Objective-C") + lang("Dart") + lang("Kotlin") * 0.5;
+  const notebook = lang("Jupyter Notebook") + lang("R") + lang("Julia");
+
   const matchers: Record<string, number> = {
     "prototype-alchemist":
       0.5 * n(s.experimentation) + 0.25 * (1 - n(s.depth)) + 0.15 * lowStars + 0.1 * n(s.diversity),
@@ -56,6 +71,19 @@ export function assignArchetype(input: PersonaInput): Archetype {
       0.5 * n(s.depth) + 0.5 * (input.stats.originalRepos <= 8 ? 1 : Math.max(0, 1 - input.stats.originalRepos / 25)),
     "tutorial-survivor":
       0.55 * input.forkRatio + 0.25 * (1 - n(s.depth)) + 0.2 * lowStars,
+
+    // Language-identity variants. The language term is weighted above 1 so a
+    // clearly dominant language (roughly two thirds of a profile or more) beats
+    // the category-based behavioral archetypes, while mixed profiles stay broad.
+    "typescript-native": 1.05 * ts + 0.15 * n(s.polish),
+    "javascript-native": 1.1 * js + 0.1 * n(s.experimentation),
+    pythonista: 1.1 * py + 0.2 * n(s.depth),
+    "markup-artisan": 1.05 * markup + 0.05 * n(s.polish),
+    rustacean: 1.1 * rust + 0.15 * n(s.depth),
+    gopher: 1.1 * go + 0.15 * n(s.depth),
+    "jvm-engineer": 1.1 * jvm + 0.15 * n(s.depth),
+    "mobile-native": 1.05 * mobileLang + 0.15 * n(s.polish),
+    "data-scientist": 0.85 * notebook + 0.3 * ai,
   };
 
   let bestKey = DEFAULT_ARCHETYPE_KEY;

@@ -9,6 +9,15 @@ import {
   Zap,
   Gem,
   Sprout,
+  Braces,
+  CodeXml,
+  Sigma,
+  PenTool,
+  Wrench,
+  Gauge,
+  Coffee,
+  Smartphone,
+  BarChart3,
   Hexagon,
   type LucideIcon,
 } from "lucide-react";
@@ -26,6 +35,15 @@ const ICONS: Record<string, LucideIcon> = {
   Zap,
   Gem,
   Sprout,
+  Braces,
+  CodeXml,
+  Sigma,
+  PenTool,
+  Wrench,
+  Gauge,
+  Coffee,
+  Smartphone,
+  BarChart3,
 };
 
 export function archetypeIcon(archetype: Pick<Archetype, "icon">): LucideIcon {

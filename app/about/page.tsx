@@ -101,9 +101,11 @@ export default function AboutPage() {
 
       <Section title="How archetypes work">
         <p>
-          Your archetype is rules-based and deterministic. We score all ten archetypes against your
-          profile signals — score dimensions, language categories, fork ratio, average stars — and
-          assign the best match. The same profile always produces the same archetype.
+          Your archetype is rules-based and deterministic. We score all {Object.keys(ARCHETYPES).length}{" "}
+          archetypes against your profile signals (score dimensions, language categories and shares,
+          fork ratio, average stars) and assign the best match. Broad behavioral types coexist with
+          language-specific ones, so a profile dominated by a single language reads as that
+          specialist. The same profile always produces the same archetype.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {Object.values(ARCHETYPES).map((a) => (

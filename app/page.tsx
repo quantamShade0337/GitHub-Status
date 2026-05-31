@@ -37,7 +37,9 @@ const FEATURES = [
 
 export default async function HomePage() {
   const recent = await getRecentScans(6);
-  const sampleArchetypes = Object.values(ARCHETYPES).slice(0, 6);
+  const allArchetypes = Object.values(ARCHETYPES);
+  const sampleArchetypes = allArchetypes.slice(0, 8);
+  const archetypeCount = allArchetypes.length;
 
   return (
     <div>
@@ -132,11 +134,12 @@ export default async function HomePage() {
         <div className="card p-6 sm:p-10">
           <p className="eyebrow">The cast</p>
           <h2 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
-            Ten developer archetypes
+            {archetypeCount} developer archetypes
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-            Every profile is read like an RPG character. You might be a fast-moving Prototype
-            Alchemist, a patient Open Source Monk, or a close-to-the-metal Systems Goblin.
+            Every profile is read like an RPG character. Broad types like the fast-moving Prototype
+            Alchemist or patient Open Source Monk, plus language-specific reads: a TypeScript Native,
+            a Pythonista, a Rustacean, a Markup Artisan.
           </p>
           <div className="mt-6 flex flex-wrap gap-2.5">
             {sampleArchetypes.map((a) => (

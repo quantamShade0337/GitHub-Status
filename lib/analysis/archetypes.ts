@@ -92,6 +92,91 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Your profile shows the honest trail of someone leveling up — practice repos, forks, and follow-alongs. That's exactly how strong developers start. The next step is making a few of these unmistakably your own.",
     color: "#84cc16",
   },
+
+  // ── Language-identity variants ─────────────────────────────────────────────
+  // These win only when a single language or ecosystem clearly dominates a
+  // profile, giving a sharper read than the broad behavioral archetypes above.
+  "typescript-native": {
+    key: "typescript-native",
+    name: "TypeScript Native",
+    icon: "Braces",
+    tagline: "Types on, strict mode, modern web.",
+    description:
+      "Your work lives in the TypeScript world: typed end to end, modern tooling, and the comfort of a compiler that has your back. You build the kind of codebases other people enjoy contributing to.",
+    color: "#3178c6",
+  },
+  "javascript-native": {
+    key: "javascript-native",
+    name: "JavaScript Native",
+    icon: "CodeXml",
+    tagline: "The language of the web, no transpiler required.",
+    description:
+      "JavaScript is your first language and your default. You move fast in the browser and on the server, reach for the platform before the framework, and ship things people can run by just opening a file.",
+    color: "#f1e05a",
+  },
+  pythonista: {
+    key: "pythonista",
+    name: "Pythonista",
+    icon: "Sigma",
+    tagline: "Readable, batteries-included, Python all the way down.",
+    description:
+      "Python is your home turf: scripts, services, automation, and data work that reads like prose. You value clarity and the enormous ecosystem, and you reach for Python long before anything heavier.",
+    color: "#3572A5",
+  },
+  "markup-artisan": {
+    key: "markup-artisan",
+    name: "Markup Artisan",
+    icon: "PenTool",
+    tagline: "HTML and CSS, treated as a craft.",
+    description:
+      "You build for the browser at the markup layer: semantic HTML, considered CSS, and pages that load fast and look right. The structure and styling other people skip past is exactly where you do your best work.",
+    color: "#e34c26",
+  },
+  rustacean: {
+    key: "rustacean",
+    name: "Rustacean",
+    icon: "Wrench",
+    tagline: "Fearless concurrency, zero-cost abstractions.",
+    description:
+      "Rust is your weapon of choice: memory safety without a garbage collector, performance you can reason about, and a compiler you've learned to trust. You build things meant to be correct and fast.",
+    color: "#dea584",
+  },
+  gopher: {
+    key: "gopher",
+    name: "Gopher",
+    icon: "Gauge",
+    tagline: "Simple, fast, and built to ship.",
+    description:
+      "You write Go: small surface area, fast builds, and services that are boring in the best way. You favor simplicity over cleverness and code that a teammate can read on the first pass.",
+    color: "#00ADD8",
+  },
+  "jvm-engineer": {
+    key: "jvm-engineer",
+    name: "JVM Engineer",
+    icon: "Coffee",
+    tagline: "Java, Kotlin, and serious back-of-house systems.",
+    description:
+      "You work on the JVM, where the libraries are mature and the systems run for years. Strong typing, real tooling, and the kind of dependable engineering that quietly powers large applications.",
+    color: "#b07219",
+  },
+  "mobile-native": {
+    key: "mobile-native",
+    name: "Mobile Native",
+    icon: "Smartphone",
+    tagline: "Apps that live in someone's pocket.",
+    description:
+      "Your focus is the device: Swift, Kotlin, or Dart, and the polish that mobile demands. You think in screens, gestures, and battery life, and you ship experiences people carry around all day.",
+    color: "#2dd4bf",
+  },
+  "data-scientist": {
+    key: "data-scientist",
+    name: "Data Scientist",
+    icon: "BarChart3",
+    tagline: "Notebooks, datasets, and findings worth sharing.",
+    description:
+      "Your repos are full of notebooks, analysis, and data pipelines. You turn raw numbers into insight, and your work is as much about asking the right question as writing the code that answers it.",
+    color: "#DA5B0B",
+  },
 };
 
 export const DEFAULT_ARCHETYPE_KEY = "prototype-alchemist";
